@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<!-- Importing Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r127/three.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Solar System</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        //Setup Scene
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        //Positioning the camera
+        camera.position.z = 50;
+
+        //Sun Class
+        class Sun {
+            constructor(scene, radius, color, lightIntensity) {
+                this.radius = radius;
+
+                //Creating Sun sphere
+                this.geometry = new THREE.SphereGeometry(this.radius, 32, 32);
+                this.material = new THREE.MeshLambertMaterial({ color: color, emissive: color });
+                this.sun = new THREE.Mesh(this.geometry, this.material);
+                scene.add(this.sun);
+
+                //Adding PointLight to simulate sunlight
+                this.light = new THREE.PointLight(color, lightIntensity, 1000);
+                this.light.position.set(0, 0, 0);
+                scene.add(this.light);
+            }
+        }
+
+        //Creating Sun
+        const sun = new Sun(scene, 10, 0xFFFF00, 2); //Sun with radius 10 and yellow light
+
+        //Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+    </script>
+</body>
+</html>
