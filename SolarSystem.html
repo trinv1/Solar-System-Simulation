@@ -13,7 +13,7 @@
         //Setup Scene
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        var renderer = new THREE.WebGLRenderer();
+        var renderer = new THREE.WebGLRenderer();//rendering scene
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
@@ -26,27 +26,41 @@
                 this.radius = radius;
 
                 //Creating Sun sphere
-                this.geometry = new THREE.SphereGeometry(this.radius, 32, 32);
-                this.material = new THREE.MeshLambertMaterial({ color: color, emissive: color });
-                this.sun = new THREE.Mesh(this.geometry, this.material);
+                this.geometrySun = new THREE.SphereGeometry(this.radius, 32, 32);
+                this.materialSun = new THREE.MeshLambertMaterial({  color: 0xffff00 });
+                this.sun = new THREE.Mesh(this.geometrySun, this.materialSun);
+
                 scene.add(this.sun);
 
-                //Adding PointLight to simulate sunlight
-                this.light = new THREE.PointLight(color, lightIntensity, 1000);
-                this.light.position.set(0, 0, 0);
-                scene.add(this.light);
+                //Ambient lighting 
+                const light = new THREE.AmbientLight( 0x404040, 0.3 ); //soft white light
+                light.position.set(50, 50, 100);
+                scene.add( light );   
+            
+                //Spotlight lighting
+                var spotLight = new THREE.SpotLight(0xFFFFFF);
+                spotLight.position.set(100, 1000, 100);
+                scene.add(spotLight);
             }
+
+            //Function to move sun
+            move(){
+             this.sun.rotation.y += 0.01; 
+         }
         }
 
         //Creating Sun
-        const sun = new Sun(scene, 10, 0xFFFF00, 2); //Sun with radius 10 and yellow light
-
+        Sun = new Sun(scene, 10, 0xFFFF00, 2); //Sun with radius 10 and yellow light  
+ 
         //Animation loop
         function animate() {
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
+
+            Sun.move();
         }
         animate();
+        repeatMe();
 
     </script>
 </body>
