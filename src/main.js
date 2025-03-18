@@ -15,6 +15,7 @@ camera.position.z = 50;
 //Creating Sun
 const sun = new Sun(scene, 10, 0xFFFF00, 2); //Sun with radius 10 and yellow light  
 
+
 //Animation loop
 function animate() {
     requestAnimationFrame(animate);

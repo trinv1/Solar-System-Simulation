@@ -6,9 +6,14 @@ import * as THREE from "three";
     constructor(scene, radius, color, lightIntensity) {
         this.radius = radius;
 
+        //Instanciating loader and creating sun texture
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Solarsystemscope_texture_2k_sun.jpg' );
+        texture.colorSpace = THREE.SRGBColorSpace;
+
         //Creating Sun sphere
         this.geometrySun = new THREE.SphereGeometry(this.radius, 32, 32);
-        this.materialSun = new THREE.MeshLambertMaterial({  color: 0xffff00 });
+        this.materialSun = new THREE.MeshLambertMaterial({  color: 0xffff00, map: texture,});
         this.sun = new THREE.Mesh(this.geometrySun, this.materialSun);
 
         scene.add(this.sun);
