@@ -1,0 +1,139 @@
+//Planets data from nasa horizons system
+[
+    {
+        "planet": "Mercury",
+        "mean_radius_km": 2439.4,
+        "mass_10^24kg": 0.330103,
+        "orbital_period_y": 0.2408467,
+        "rotation_period_d": 58.6463,
+        "position_au": {
+            "X": 0.3125,
+            "Y": 0.1156,
+            "Z": -0.0192
+        },
+        "velocity_au_per_day": {
+            "VX": -0.0152,
+            "VY": 0.0276,
+            "VZ": 0.0037
+        }
+    },
+    {
+        "planet": "Venus",
+        "mean_radius_km": 6051.84,
+        "mass_10^24kg": 4.8685,
+        "orbital_period_y": 0.61519726,
+        "rotation_period_d": -243.018484,
+        "position_au": {
+            "X": -0.5228,
+            "Y": 0.4914,
+            "Z": 0.0369
+        },
+        "velocity_au_per_day": {
+            "VX": -0.0139,
+            "VY": -0.0148,
+            "VZ": 0.0006
+        }
+    },
+    {
+        "planet": "Earth",
+        "mean_radius_km": 6371.01,
+        "mass_10^24kg": 5.97219,
+        "orbital_period_y": 1.0000174,
+        "rotation_period_d": 0.99726968,
+        "position_au": {
+            "X": -0.8913,
+            "Y": 0.4296,
+            "Z": -0.000016
+        },
+        "velocity_au_per_day": {
+            "VX": -0.00776,
+            "VY": -0.01556,
+            "VZ": 0.00000085
+        }
+    },
+    {
+        "planet": "Mars",
+        "mean_radius_km": 3389.92,
+        "mass_10^24kg": 6.4171,
+        "orbital_period_y": 1.88081578,
+        "rotation_period_d": 1.02595676,
+        "position_au": {
+            "X": -1.1248,
+            "Y": 1.2092,
+            "Z": 0.0529
+        },
+        "velocity_au_per_day": {
+            "VX": -0.0097,
+            "VY": -0.0083,
+            "VZ": 0.00006
+        }
+    },
+    {
+        "planet": "Jupiter",
+        "mean_radius_km": 69911,
+        "mass_10^24kg": 1898.19,
+        "orbital_period_y": 11.861982204,
+        "rotation_period_d": 0.41354,
+        "position_au": {
+            "X": 0.6569,
+            "Y": 5.0577,
+            "Z": -0.0357
+        },
+        "velocity_au_per_day": {
+            "VX": -0.00758,
+            "VY": 0.00133,
+            "VZ": 0.00016
+        }
+    },
+    {
+        "planet": "Saturn",
+        "mean_radius_km": 58232,
+        "mass_10^24kg": 568.34,
+        "orbital_period_y": 29.447498,
+        "rotation_period_d": 0.44401,
+        "position_au": {
+            "X": 9.4942,
+            "Y": -1.4736,
+            "Z": -0.3523
+        },
+        "velocity_au_per_day": {
+            "VX": 0.00054,
+            "VY": 0.0055,
+            "VZ": -0.00012
+        }
+    },
+    {
+        "planet": "Uranus",
+        "mean_radius_km": 25362,
+        "mass_10^24kg": 86.813,
+        "orbital_period_y": 84.0120465,
+        "rotation_period_d": -0.71833,
+        "position_au": {
+            "X": 10.9295,
+            "Y": 16.2024,
+            "Z": -0.0815
+        },
+        "velocity_au_per_day": {
+            "VX": -0.0033,
+            "VY": 0.0020,
+            "VZ": 0.00005
+        }
+    },
+    {
+        "planet": "Neptune",
+        "mean_radius_km": 24624,
+        "mass_10^24kg": 102.409,
+        "orbital_period_y": 164.788501027,
+        "rotation_period_d": 0.67125,
+        "position_au": {
+            "X": 29.8815,
+            "Y": -0.4667,
+            "Z": -0.6789
+        },
+        "velocity_au_per_day": {
+            "VX": 0.000021,
+            "VY": 0.00316,
+            "VZ": -0.000066
+        }
+    }
+]
