@@ -2,7 +2,7 @@
 import * as THREE from "three";
 
 //Sun Class
-class Sun {
+ export class Sun {
     constructor(scene, radius, color, lightIntensity) {
         this.radius = radius;
 
