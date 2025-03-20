@@ -23,7 +23,7 @@ import * as THREE from "three";
         scene.add(spotLight);
 
         //Hemisphere lighting
-        const hemiLight = new THREE.HemisphereLight(0xffffff, 1)
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 4)
         scene.add(hemiLight);
 
     }

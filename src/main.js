@@ -1,6 +1,7 @@
 import * as THREE from "three";
 //import { OrbitControls } from "jsm/controls/OrbitControls.js";
 import { Sun } from './sun';
+import { Earth } from "./earth";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -13,15 +14,19 @@ document.body.appendChild(renderer.domElement);
 camera.position.z = 50;
 
 //Creating Sun
-const sun = new Sun(scene, 10, 0xFFFF00, 2); //Sun with radius 10 and yellow light  
+const sun = new Sun(scene, 10, 0xFFFF00, 3); //Sun with radius 10 and yellow light  
 
+//Creating planets
+const earth = new Earth(scene, 20, 0xFFFF00, 2); //Earth with radius 10 and yellow light  
 
 //Animation loop
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 
+    //Rotating planets
     sun.rotate();
+    earth.rotate();
 }
 animate();
 
