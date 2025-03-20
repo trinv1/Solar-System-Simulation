@@ -16,6 +16,7 @@ import * as THREE from "three";
         this.earth = new THREE.Mesh(this.geometryEarth, this.materialEarth);
 
         scene.add(this.earth);
+        this.earth.position.set(40, 10, 0);//Setting earth position
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
