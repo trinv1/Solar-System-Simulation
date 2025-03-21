@@ -19,7 +19,7 @@ import * as THREE from "three";
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
-        spotLight.position.set(300, 50, 100);
+        spotLight.position.set(200, 50, 100);
         scene.add(spotLight);
 
         //Hemisphere lighting

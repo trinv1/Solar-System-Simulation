@@ -50,7 +50,7 @@ function animate() {
 
     sun.rotate();//Rotating sun
     if (earth) {
-      earth.rotate();//Rotating earth
+      earth.rotate(1);//Rotating earth 1 day per frame
       earth.updatePosition(1); //Updating earths position 1 day per frame
     } 
   

@@ -5,12 +5,16 @@ import * as THREE from "three";
     constructor(scene, planetData) {
         this.radius = planetData.mean_radius_km/500;//Making radius proportionate to scene
 
+        //Rotation per day
+        this.rotationPeriod = planetData.rotation_period_d;
+        this.rotationSpeed = (2 * Math.PI) / this.rotationPeriod; //radians per day
+
         //1 AU is approx 149,000,000 km
         //Extracting position & velocity from JSON
         this.position = {
-            x: planetData.position_au.X * 1, //Converting astronomical units to fit three.js scale
-            y: planetData.position_au.Y * 1,
-            z: planetData.position_au.Z * 1
+            x: planetData.position_au.X * 10, //Converting astronomical units to fit three.js scale
+            y: planetData.position_au.Y * 10,
+            z: planetData.position_au.Z * 10
         };
         this.velocity = {
             x: planetData.velocity_au_per_day.VX * 10, //Converting velocity AU/day
@@ -41,10 +45,10 @@ import * as THREE from "three";
 
     }
 
-    //Function to rotate earth
-    rotate(){
-        this.earth.rotation.y += 0.002; 
-    }
+    //Function to rotate earth overtime
+    rotate(timeStep) {
+        this.earth.rotation.y += this.rotationSpeed * timeStep;
+    }    
 
     //Updating earths orbit over time
     updatePosition(timeStep) {
