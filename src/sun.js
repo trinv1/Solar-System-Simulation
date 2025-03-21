@@ -30,6 +30,6 @@ import * as THREE from "three";
 
     //Function to rotate sun
     rotate(){
-        this.sun.rotation.y += 0.002; 
+        this.sun.rotation.y += 0.001; 
     }
 }

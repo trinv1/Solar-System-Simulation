@@ -19,7 +19,7 @@ async function getPlanetData() {
       console.log("Loaded JSON:", data);
 
       //Finding which object has name 'Earth' from planet data
-      const earthData = data.find(p => p.planet === 'Earth');
+      const earthData = data.find(p => p.planet == 'Earth');
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
         earth = new Earth(scene, earthData);//Creating earth object in scene
@@ -48,9 +48,12 @@ function animate() {
     renderer.render(scene, camera);
     controls.update();
 
-    //Rotating planets
-    sun.rotate();
-    if (earth) earth.rotate();//this makes json appear in console but not showing earth
+    sun.rotate();//Rotating sun
+    if (earth) {
+      earth.rotate();//Rotating earth
+      earth.updatePosition(1); //Updating earths position 1 day per frame
+    } 
+  
 
 }
 animate();
