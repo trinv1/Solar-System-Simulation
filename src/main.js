@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";//Got from three.js docs
 import { Sun } from './sun';
 import { Earth } from "./earth";
+import { Mercury } from "./mercury";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -11,6 +12,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 let earth;
+let mercury;
 
 //Fetching planet data
 async function getPlanetData() {
@@ -20,9 +22,15 @@ async function getPlanetData() {
 
       //Finding which object has name 'Earth' from planet data
       const earthData = data.find(p => p.planet == 'Earth');
+      const mercuryData = data.find(p => p.planet == 'Mercury');
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
         earth = new Earth(scene, earthData);//Creating earth object in scene
+      } 
+
+      if (mercuryData) {
+        console.log("Mercury data from JSON:", mercuryData);
+        mercury = new Mercury(scene, mercuryData);//Creating earth object in scene
       } 
     } 
 
@@ -53,6 +61,11 @@ function animate() {
       earth.rotate(1);//Rotating earth 1 day per frame
       earth.updatePosition(1); //Updating earths position 1 day per frame
     } 
+
+    if (mercury) {
+      mercury.rotate(1);//Rotating earth 1 day per frame
+      mercury.updatePosition(1); //Updating earths position 1 day per frame
+    }
   
 
 }

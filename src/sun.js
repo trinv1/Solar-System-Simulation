@@ -2,7 +2,7 @@
 import * as THREE from "three";
 
  export class Sun {
-    constructor(scene, radius, color, lightIntensity) {
+    constructor(scene, radius) {
         this.radius = radius;
 
         //Instanciating loader and creating sun texture
@@ -19,7 +19,7 @@ import * as THREE from "three";
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
-        spotLight.position.set(200, 50, 100);
+        spotLight.position.set(400, 50, 100);
         scene.add(spotLight);
 
         //Hemisphere lighting

@@ -1,7 +1,7 @@
-//Earth class
+//Mercury class
 import * as THREE from "three";
 
- export class Earth {
+ export class Mercury {
     constructor(scene, planetData) {
         this.radius = planetData.mean_radius_km/500;//Making radius proportionate to scene
 
@@ -22,17 +22,17 @@ import * as THREE from "three";
             z: planetData.velocity_au_per_day.VZ * 10
         };
 
-        //Instanciating loader and creating earth texture
+        //Instanciating loader and creating mercury texture
         const loader = new THREE.TextureLoader();
-        const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Whole_world_-_land_and_oceans_12000.jpg' );
+        const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Mercury_global_map_2013-05-14_bright.png');
         texture.colorSpace = THREE.SRGBColorSpace;
 
-        //Creating Earth sphere
-        this.geometryEarth = new THREE.SphereGeometry(this.radius, 32, 32);
-        this.materialEarth = new THREE.MeshLambertMaterial({  map: texture,});
-        this.earth = new THREE.Mesh(this.geometryEarth, this.materialEarth);
+        //Creating Mercury sphere
+        this.geometryMercury = new THREE.SphereGeometry(this.radius, 32, 32);
+        this.materialMercury = new THREE.MeshLambertMaterial({  map: texture,});
+        this.mercury = new THREE.Mesh(this.geometryMercury, this.materialMercury);
 
-        scene.add(this.earth);
+        scene.add(this.mercury);
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
@@ -45,19 +45,19 @@ import * as THREE from "three";
 
     }
 
-    //Function to rotate earth overtime
+    //Function to rotate mercury overtime
     rotate(timeStep) {
-        this.earth.rotation.y += this.rotationSpeed * timeStep;
+        this.mercury.rotation.y += this.rotationSpeed * timeStep;
     }    
 
-    //Updating earths orbit over time
+    //Updating mercurys orbit over time
     updatePosition(timeStep) {
         this.position.x += this.velocity.x * timeStep;
         this.position.y += this.velocity.y * timeStep;
         this.position.z += this.velocity.z * timeStep;
     
-        //Setting earths position
-        this.earth.position.set(this.position.x, this.position.y, this.position.z);
+        //Setting mercurys position
+        this.mercury.position.set(this.position.x, this.position.y, this.position.z);
     }
     
 }
