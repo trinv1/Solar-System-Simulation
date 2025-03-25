@@ -44,7 +44,7 @@ camera.position.set( 0, 20, 100 );
 controls.update();
 
 controls.enableDamping = true;//Weight is applied when you click to move planets
-controls.autoRotate = true;//Camera rotates around solar system
+//controls.autoRotate = true;//Camera rotates around solar system
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
