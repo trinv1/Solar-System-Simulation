@@ -5,22 +5,19 @@ import * as THREE from "three";
     constructor(scene, planetData) {
         this.radius = planetData.mean_radius_km/500;//Making radius proportionate to scene
 
-         //Rotation per day
-         this.rotationPeriod = planetData.rotation_period_d;
-         this.rotationSpeed = (2 * Math.PI) / this.rotationPeriod; //radians per day
- 
-         //1 AU is approx 149,000,000 km
-         //Extracting position & velocity from JSON
-         this.position = {
-             x: planetData.position_au.X * 10, //Converting astronomical units to fit three.js scale
-             y: planetData.position_au.Y * 10,
-             z: planetData.position_au.Z * 10
-         };
-         this.velocity = {
-             x: planetData.velocity_au_per_day.VX * 10, //Converting velocity AU/day
-             y: planetData.velocity_au_per_day.VY * 10,
-             z: planetData.velocity_au_per_day.VZ * 10
-         };
+        //Rotation per day
+        this.rotationPeriod = planetData.rotation_period_d;
+        this.rotationSpeedPerDay = (2 * Math.PI) / this.rotationPeriod;
+        this.rotationDirection = Math.sign(this.rotationPeriod);
+
+        this.theta = 0; //orbit angle
+        this.orbitSpeed = (2 * Math.PI) / (planetData.orbital_period_y * 365); //radians per day
+
+        this.auScale = 150;//scaling to scene
+
+        //Manually calculated semi major and semi minor axis from json
+        this.rx = 0.622 / 2; 
+        this.ry = 0.537 / 2; 
 
         //Instanciating loader and creating mercury texture
         const loader = new THREE.TextureLoader();
@@ -42,22 +39,21 @@ import * as THREE from "three";
         //Hemisphere lighting
         const hemiLight = new THREE.HemisphereLight(0xffffff, 1)
         scene.add(hemiLight);
-
     }
 
-   //Function to rotate mercury overtime
+   //Function to rotate mercury overtime in given direction
    rotate(timeStep) {
-    this.mercury.rotation.y += this.rotationSpeed * timeStep;
+    this.mercury.rotation.y += this.rotationSpeedPerDay  * timeStep * this.rotationDirection;
 }    
 
 //Updating mercurys orbit over time
 updatePosition(timeStep) {
-    this.position.x += this.velocity.x * timeStep;
-    this.position.y += this.velocity.y * timeStep;
-    this.position.z += this.velocity.z * timeStep;
+    this.theta += this.orbitSpeed * timeStep;
 
-    //Setting mercurys position
-    this.mercury.position.set(this.position.x, this.position.y, this.position.z);
+    const x = this.rx * Math.cos(this.theta) * this.auScale;
+    const z = this.ry * Math.sin(this.theta) * this.auScale;
+
+    this.mercury.position.set(x, 0, z);
 }
     
 }

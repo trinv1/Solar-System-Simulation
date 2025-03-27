@@ -48,7 +48,7 @@ controls.enableDamping = true;//Weight is applied when you click to move planets
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
-const sun = new Sun(scene, 15, 0xFFFF00, 3); //Sun with radius 10 and yellow light  
+const sun = new Sun(scene, 15, 0xFFFF00, 3); //Sun with radius 15 and yellow light  
 
 //Animation loop
 function animate() {
