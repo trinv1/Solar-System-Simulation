@@ -127,6 +127,11 @@ function animate() {
       saturn.rotate(.5);//Rotating saturns half a day per frame
       saturn.updatePosition(.5); //Updating saturn's position half a day per frame
     }
+
+    if(uranus){
+      uranus.rotate(.5);//Rotating uranus' half a day per frame
+      uranus.updatePosition(.5); //Updating uranus' position half a day per frame
+    }
 }
 animate();
 getPlanetData();
