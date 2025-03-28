@@ -31,6 +31,7 @@ async function getPlanetData() {
       const mercuryData = data.find(p => p.planet == 'Mercury');
       const venusData = data.find(p => p.planet == 'Venus');
       const marsData = data.find(p => p.planet == 'Mars');
+      const jupiterData = data.find(p => p.planet == 'Jupiter');
 
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
@@ -50,6 +51,11 @@ async function getPlanetData() {
       if (marsData) {
         console.log("Mars data from JSON:", marsData);
         mars = new Mars(scene, marsData);//Creating mars object in scene
+      } 
+
+      if (jupiterData) {
+        console.log("Jupiter data from JSON:", jupiterData);
+        jupiter = new Jupiter(scene, jupiterData);//Creating jupiter object in scene
       } 
     } 
 
