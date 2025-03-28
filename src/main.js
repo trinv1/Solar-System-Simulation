@@ -69,11 +69,11 @@ camera.position.set( 0, 20, 100 );
 controls.update();
 
 controls.enableDamping = true;//Weight is applied when you click to move planets
-//controls.autoRotate = true;//Camera rotates around solar system
+controls.autoRotate = true;//Camera rotates around solar system
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
-const sun = new Sun(scene, 15, 0xFFFF00, 3); //Sun with radius 15 and yellow light  
+const sun = new Sun(scene, 40, 0xFFFF00, 3); //Sun with radius 15 and yellow light  
 
 //Animation loop
 function animate() {
@@ -83,23 +83,28 @@ function animate() {
 
     sun.rotate();//Rotating sun
     if (earth) {
-      earth.rotate(1);//Rotating earth 1 day per frame
-      earth.updatePosition(1); //Updating earths position 1 day per frame
+      earth.rotate(0.5);//Rotating earth 1 day per frame
+      earth.updatePosition(0.5); //Updating earths position 1 day per frame
     } 
 
     if(mercury){
-      mercury.rotate(1);//Rotating mercury 1 day per frame
-      mercury.updatePosition(1); //Updating mercurys position 1 day per frame
+      mercury.rotate(.5);//Rotating mercury 1 day per frame
+      mercury.updatePosition(.5); //Updating mercurys position 1 day per frame
     }
 
     if(venus){
-      venus.rotate(1);//Rotating venus 1 day per frame
-      venus.updatePosition(1); //Updating venus's  position 1 day per frame
+      venus.rotate(.5);//Rotating venus 1 day per frame
+      venus.updatePosition(.5); //Updating venus's  position 1 day per frame
     }
 
     if(mars){
-      mars.rotate(1);//Rotating mars 1 day per frame
-      mars.updatePosition(1); //Updating mars's  position 1 day per frame
+      mars.rotate(.5);//Rotating mars 1 day per frame
+      mars.updatePosition(.5); //Updating mars's  position 1 day per frame
+    }
+
+    if(jupiter){
+      jupiter.rotate(.5);//Rotating jupiters 1 day per frame
+      jupiter.updatePosition(.5); //Updating jupiters's position 1 day per frame
     }
 }
 animate();
