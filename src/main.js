@@ -6,6 +6,7 @@ import { Mercury } from "./mercury";
 import { Venus } from "./venus";
 import { Mars } from "./mars";
 import { Jupiter } from "./jupiter";
+import { Saturn } from "./saturn";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -19,6 +20,7 @@ let mercury;
 let venus;
 let mars;
 let jupiter;
+let saturn;
 
 //Fetching planet data
 async function getPlanetData() {
@@ -26,12 +28,13 @@ async function getPlanetData() {
       const data = await response.json();
       console.log("Loaded JSON:", data);
 
-      //Finding which object has name 'Earth' from planet data
+      //Finding which object has name planet names from json data
       const earthData = data.find(p => p.planet == 'Earth');
       const mercuryData = data.find(p => p.planet == 'Mercury');
       const venusData = data.find(p => p.planet == 'Venus');
       const marsData = data.find(p => p.planet == 'Mars');
       const jupiterData = data.find(p => p.planet == 'Jupiter');
+      const saturnData = data.find(p => p.planet == 'Saturn');
 
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
@@ -56,6 +59,11 @@ async function getPlanetData() {
       if (jupiterData) {
         console.log("Jupiter data from JSON:", jupiterData);
         jupiter = new Jupiter(scene, jupiterData);//Creating jupiter object in scene
+      } 
+
+      if (saturnData) {
+        console.log("Saturn data from JSON:", saturnData);
+        saturn = new Saturn(scene, saturnData);//Creating saturn object in scene
       } 
     } 
 
