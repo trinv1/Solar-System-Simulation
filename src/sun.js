@@ -11,7 +11,7 @@ import * as THREE from "three";
         texture.colorSpace = THREE.SRGBColorSpace;
 
         //Creating Sun sphere
-        this.geometrySun = new THREE.SphereGeometry(this.radius, 32, 32);
+        this.geometrySun = new THREE.SphereGeometry(this.radius, 50, 50);
         this.materialSun = new THREE.MeshLambertMaterial({  color: 0xffff00, map: texture,});
         this.sun = new THREE.Mesh(this.geometrySun, this.materialSun);
 
