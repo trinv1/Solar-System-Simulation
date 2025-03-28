@@ -5,6 +5,7 @@ import { Earth } from "./earth";
 import { Mercury } from "./mercury";
 import { Venus } from "./venus";
 import { Mars } from "./mars";
+import { Jupiter } from "./jupiter";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -17,6 +18,7 @@ let earth;
 let mercury;
 let venus;
 let mars;
+let jupiter;
 
 //Fetching planet data
 async function getPlanetData() {
@@ -87,6 +89,11 @@ function animate() {
     if(venus){
       venus.rotate(1);//Rotating venus 1 day per frame
       venus.updatePosition(1); //Updating venus's  position 1 day per frame
+    }
+
+    if(mars){
+      mars.rotate(1);//Rotating mars 1 day per frame
+      mars.updatePosition(1); //Updating mars's  position 1 day per frame
     }
 }
 animate();
