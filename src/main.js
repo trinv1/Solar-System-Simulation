@@ -13,6 +13,7 @@ document.body.appendChild(renderer.domElement);
 
 let earth;
 let mercury;
+let venus;
 
 //Fetching planet data
 async function getPlanetData() {
@@ -23,6 +24,8 @@ async function getPlanetData() {
       //Finding which object has name 'Earth' from planet data
       const earthData = data.find(p => p.planet == 'Earth');
       const mercuryData = data.find(p => p.planet == 'Mercury');
+      const venusData = data.find(p => p.planet == 'Venus');
+
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
         earth = new Earth(scene, earthData);//Creating earth object in scene
@@ -31,6 +34,11 @@ async function getPlanetData() {
       if (mercuryData) {
         console.log("Mercury data from JSON:", mercuryData);
         mercury = new Mercury(scene, mercuryData);//Creating earth object in scene
+      } 
+
+      if (venusData) {
+        console.log("Venus data from JSON:", venusData);
+        mercury = new Venus(scene, venusData);//Creating venus object in scene
       } 
     } 
 
@@ -63,8 +71,13 @@ function animate() {
     } 
 
     if(mercury){
-      mercury.rotate(1);//Rotating earth 1 day per frame
-      mercury.updatePosition(1); //Updating earths position 1 day per frame
+      mercury.rotate(1);//Rotating mercury 1 day per frame
+      mercury.updatePosition(1); //Updating mercurys position 1 day per frame
+    }
+
+    if(venus){
+      venus.rotate(1);//Rotating venus 1 day per frame
+      venus.updatePosition(1); //Updating venus's position 1 day per frame
     }
   
 
