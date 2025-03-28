@@ -1,0 +1,74 @@
+[
+  {
+    "planet": "Mercury",
+    "mean_radius_km": 2439.5,
+    "mass_10^24kg": 0.330,
+    "orbital_period_d": 88.0,
+    "orbital_velocity_kms": 47.4,
+    "rotation_period_h": 1407.6,
+    "orbital_eccentricity": 0.206
+  },
+  {
+    "planet": "Venus",
+    "mean_radius_km": 6052,
+    "mass_10^24kg": 4.87,
+    "orbital_period_d": 224.7,
+    "orbital_velocity_kms": 35.0,
+    "rotation_period_h": -5832.5,
+    "orbital_eccentricity": 0.007
+  },
+  {
+    "planet": "Earth",
+    "mean_radius_km": 6378,
+    "mass_10^24kg": 5.97,
+    "orbital_period_d": 365.2,
+    "orbital_velocity_kms": 29.8,
+    "rotation_period_h": 23.9,
+    "orbital_eccentricity": 0.017
+  },
+  {
+    "planet": "Mars",
+    "mean_radius_km": 3396,
+    "mass_10^24kg": 0.642,
+    "orbital_period_d": 687.0,
+    "orbital_velocity_kms": 24.1,
+    "rotation_period_h": 24.6,
+    "orbital_eccentricity": 0.094
+  },
+  {
+    "planet": "Jupiter",
+    "mean_radius_km": 71492,
+    "mass_10^24kg": 1898,
+    "orbital_period_d": 4331,
+    "orbital_velocity_kms": 13.1,
+    "rotation_period_h": 9.9,
+    "orbital_eccentricity": 0.049
+  },
+  {
+    "planet": "Saturn",
+    "mean_radius_km": 60268,
+    "mass_10^24kg": 568,
+    "orbital_period_d": 10747,
+    "orbital_velocity_kms": 9.7,
+    "rotation_period_h": 10.7,
+    "orbital_eccentricity": 0.052
+  },
+  {
+    "planet": "Uranus",
+    "mean_radius_km": 25559,
+    "mass_10^24kg": 86.8,
+    "orbital_period_d": 30589,
+    "orbital_velocity_kms": 6.8,
+    "rotation_period_h": -17.2,
+    "orbital_eccentricity": 0.047
+  },
+  {
+    "planet": "Neptune",
+    "mean_radius_km": 24664,
+    "mass_10^24kg": 102,
+    "orbital_period_d": 59800,
+    "orbital_velocity_kms": 5.4,
+    "rotation_period_h": 16.1,
+    "orbital_eccentricity": 0.010
+  }
+]

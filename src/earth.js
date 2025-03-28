@@ -8,16 +8,7 @@ import * as THREE from "three";
            //Rotation per day
            this.rotationPeriod = planetData.rotation_period_d;
            this.rotationSpeedPerDay = (2 * Math.PI) / this.rotationPeriod;
-           this.rotationDirection = Math.sign(this.rotationPeriod);
-   
-           this.theta = 0; //orbit angle
-           this.orbitSpeed = (2 * Math.PI) / (planetData.orbital_period_y * 365); //radians per day
-   
-           this.auScale = 150;//scaling to scene
-   
-           //Manually calculated semi major and semi minor axis from json
-           this.rx = (0.097 / 2) * 4; 
-           this.ry = (0.0015 / 2) * 2; 
+        
 
         //Instanciating loader and creating earth texture
         const loader = new THREE.TextureLoader();
@@ -44,17 +35,12 @@ import * as THREE from "three";
 
     //Function to rotate mercury overtime in given direction
    rotate(timeStep) {
-    this.earth.rotation.y += this.rotationSpeedPerDay  * timeStep * this.rotationDirection;
+
 }    
 
 //Updating mercurys orbit over time
 updatePosition(timeStep) {
-    this.theta += this.orbitSpeed * timeStep;
 
-    const x = this.rx * Math.cos(this.theta) * this.auScale;
-    const z = this.ry * Math.sin(this.theta) * this.auScale;
-
-    this.earth.position.set(x, 0, z);
 }
     
 }
