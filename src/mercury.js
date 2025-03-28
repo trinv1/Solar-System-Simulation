@@ -3,7 +3,7 @@ import * as THREE from "three";
 
  export class Mercury {
     constructor(scene, planetData) {
-        this.radius = planetData.mean_radius_km/700;//Making radius proportionate to scene
+        this.radius = planetData.mean_radius_km/1500;//Making radius proportionate to scene
         
         //Rotation per day
         this.rotationPeriod = planetData.rotation_period_h;
