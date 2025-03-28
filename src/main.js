@@ -62,7 +62,7 @@ function animate() {
       earth.updatePosition(1); //Updating earths position 1 day per frame
     } 
 
-    if (mercury) {
+    if(mercury){
       mercury.rotate(1);//Rotating earth 1 day per frame
       mercury.updatePosition(1); //Updating earths position 1 day per frame
     }
