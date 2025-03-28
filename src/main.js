@@ -3,6 +3,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";//Got fro
 import { Sun } from './sun';
 import { Earth } from "./earth";
 import { Mercury } from "./mercury";
+import { Venus } from "./venus";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -38,7 +39,7 @@ async function getPlanetData() {
 
       if (venusData) {
         console.log("Venus data from JSON:", venusData);
-        mercury = new Venus(scene, venusData);//Creating venus object in scene
+        venus = new Venus(scene, venusData);//Creating venus object in scene
       } 
     } 
 
@@ -77,10 +78,8 @@ function animate() {
 
     if(venus){
       venus.rotate(1);//Rotating venus 1 day per frame
-      venus.updatePosition(1); //Updating venus's position 1 day per frame
+      venus.updatePosition(1); //Updating venus's  position 1 day per frame
     }
-  
-
 }
 animate();
 getPlanetData();
