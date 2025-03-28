@@ -7,6 +7,7 @@ import { Venus } from "./venus";
 import { Mars } from "./mars";
 import { Jupiter } from "./jupiter";
 import { Saturn } from "./saturn";
+import { Uranus } from "./uranus";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -21,6 +22,7 @@ let venus;
 let mars;
 let jupiter;
 let saturn;
+let uranus
 
 //Fetching planet data
 async function getPlanetData() {
@@ -35,6 +37,7 @@ async function getPlanetData() {
       const marsData = data.find(p => p.planet == 'Mars');
       const jupiterData = data.find(p => p.planet == 'Jupiter');
       const saturnData = data.find(p => p.planet == 'Saturn');
+      const uranusData = data.find(p => p.planet == 'Uranus');
 
       if (earthData) {
         console.log("Earth data from JSON:", earthData);
@@ -65,6 +68,11 @@ async function getPlanetData() {
         console.log("Saturn data from JSON:", saturnData);
         saturn = new Saturn(scene, saturnData);//Creating saturn object in scene
       } 
+
+      if (uranusData) {
+        console.log("Saturn data from JSON:", uranusData);
+        uranus = new Uranus(scene, uranusData);//Creating uranus object in scene
+      } 
     } 
 
 //Creating OrbitControls to allow camera rotation, zoom, and damping
@@ -91,28 +99,33 @@ function animate() {
 
     sun.rotate();//Rotating sun
     if (earth) {
-      earth.rotate(0.5);//Rotating earth 1 day per frame
-      earth.updatePosition(0.5); //Updating earths position 1 day per frame
+      earth.rotate(0.5);//Rotating earth half a day per frame
+      earth.updatePosition(0.5); //Updating earths position half a day per frame
     } 
 
     if(mercury){
-      mercury.rotate(.5);//Rotating mercury 1 day per frame
-      mercury.updatePosition(.5); //Updating mercurys position 1 day per frame
+      mercury.rotate(.5);//Rotating mercury half a day per frame
+      mercury.updatePosition(.5); //Updating mercurys position half a day per frame
     }
 
     if(venus){
-      venus.rotate(.5);//Rotating venus 1 day per frame
-      venus.updatePosition(.5); //Updating venus's  position 1 day per frame
+      venus.rotate(.5);//Rotating venus half a day per frame
+      venus.updatePosition(.5); //Updating venus's  position half a day per frame
     }
 
     if(mars){
-      mars.rotate(.5);//Rotating mars 1 day per frame
-      mars.updatePosition(.5); //Updating mars's  position 1 day per frame
+      mars.rotate(.5);//Rotating mars half a day per frame
+      mars.updatePosition(.5); //Updating mars's  position half a day per frame
     }
 
     if(jupiter){
-      jupiter.rotate(.5);//Rotating jupiters 1 day per frame
-      jupiter.updatePosition(.5); //Updating jupiters's position 1 day per frame
+      jupiter.rotate(.5);//Rotating jupiters half a day per frame
+      jupiter.updatePosition(.5); //Updating jupiters's position half a day per frame
+    }
+
+    if(saturn){
+      saturn.rotate(.5);//Rotating saturns half a day per frame
+      saturn.updatePosition(.5); //Updating saturn's position half a day per frame
     }
 }
 animate();
