@@ -140,6 +140,11 @@ function animate() {
       uranus.rotate(.5);//Rotating uranus' half a day per frame
       uranus.updatePosition(.5); //Updating uranus' position half a day per frame
     }
+
+    if(neptune){
+      neptune.rotate(.5);//Rotating neptune's half a day per frame
+      neptune.updatePosition(.5); //Updating neptune's position half a day per frame
+    }
 }
 animate();
 getPlanetData();
