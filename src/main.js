@@ -34,7 +34,7 @@ async function getPlanetData() {
       const data = await response.json();
       console.log("Loaded JSON:", data);
 
-      //Finding which object has name planet names from json data
+      //Finding which object has planet names from json data
       const earthData = data.find(p => p.planet == 'Earth');
       const mercuryData = data.find(p => p.planet == 'Mercury');
       const venusData = data.find(p => p.planet == 'Venus');
@@ -95,7 +95,7 @@ async function getPlanetData() {
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //Positioning camera
-camera.position.set( 0, 20, 100 );
+camera.position.set( 0, 500, 7000 );
 
 //Manually update camera
 controls.update();
@@ -152,6 +152,11 @@ function animate() {
     if(neptune){
       neptune.rotate(.5);//Rotating neptune's half a day per frame
       neptune.updatePosition(.5); //Updating neptune's position half a day per frame
+    }
+
+    if(pluto){
+      pluto.rotate(.5);//Rotating pluto's half a day per frame
+      pluto.updatePosition(.5); //Updating pluto's position half a day per frame
     }
 }
 animate();
