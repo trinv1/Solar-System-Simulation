@@ -95,7 +95,7 @@ async function getPlanetData() {
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //Positioning camera
-camera.position.set( 0, 500, 1000 );
+camera.position.set(0, 500, 1000);
 
 //Manually update camera
 controls.update();

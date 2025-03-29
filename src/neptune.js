@@ -15,7 +15,7 @@ import * as THREE from "three";
         this.auScale = 150;//scaling to scene
 
         //Getting the semi axes of the orbit
-        const semiMajorAU = 30.1/15; 
+        const semiMajorAU = 30.1/10.5; 
         const semiMinorAU = semiMajorAU * Math.sqrt(1 - this.eccentricity ** 2);
         this.rx = semiMajorAU;
         this.ry = semiMinorAU;
