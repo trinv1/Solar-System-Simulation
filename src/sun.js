@@ -18,7 +18,7 @@ import * as THREE from "three";
         scene.add(this.sun);
     
         //Spotlight lighting
-        var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
+        var spotLight = new THREE.SpotLight(0xFFFFFF, 1);
         spotLight.position.set(400, 50, 100);
         scene.add(spotLight);
 

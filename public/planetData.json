@@ -70,5 +70,14 @@
     "orbital_velocity_kms": 5.4,
     "rotation_period_h": 16.1,
     "orbital_eccentricity": 0.010
+  }, 
+  {
+    "planet": "Pluto",
+    "mean_radius_km": 1188,
+    "mass_10^24kg": 0.0130,
+    "orbital_period_d": 90560,
+    "orbital_velocity_kms": 4.7,
+    "rotation_period_h": -153.3,
+    "orbital_eccentricity": 0.244
   }
 ]

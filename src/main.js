@@ -95,7 +95,7 @@ async function getPlanetData() {
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //Positioning camera
-camera.position.set( 0, 500, 7000 );
+camera.position.set( 0, 500, 1000 );
 
 //Manually update camera
 controls.update();
@@ -105,7 +105,7 @@ controls.autoRotate = true;//Camera rotates around solar system
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
-const sun = new Sun(scene, 40, 0xFFFF00, 3); //Sun with radius 15 and yellow light  
+const sun = new Sun(scene, 40, 0xFFFF00, 3); //Sun with radius 40 and yellow light  
 
 //Animation loop
 function animate() {
