@@ -101,7 +101,7 @@ camera.position.set(0, 500, 1000);
 controls.update();
 
 controls.enableDamping = true;//Weight is applied when you click to move planets
-controls.autoRotate = true;//Camera rotates around solar system
+//controls.autoRotate = true;//Camera rotates around solar system
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
@@ -116,47 +116,47 @@ function animate() {
     sun.rotate();//Rotating sun
     if (earth) {
       earth.rotate(0.5);//Rotating earth half a day per frame
-      earth.updatePosition(0.5); //Updating earths position half a day per frame
+      earth.updatePosition(1); //Updating earths position 1 day per frame
     } 
 
     if(mercury){
       mercury.rotate(.5);//Rotating mercury half a day per frame
-      mercury.updatePosition(.5); //Updating mercurys position half a day per frame
+      mercury.updatePosition(1); //Updating mercurys position 1 day per frame
     }
 
     if(venus){
       venus.rotate(.5);//Rotating venus half a day per frame
-      venus.updatePosition(.5); //Updating venus's  position half a day per frame
+      venus.updatePosition(1); //Updating venus's  position 1 day per frame
     }
 
     if(mars){
       mars.rotate(.5);//Rotating mars half a day per frame
-      mars.updatePosition(.5); //Updating mars's  position half a day per frame
+      mars.updatePosition(1); //Updating mars's  position 1 day per frame
     }
 
     if(jupiter){
       jupiter.rotate(.5);//Rotating jupiters half a day per frame
-      jupiter.updatePosition(.5); //Updating jupiters's position half a day per frame
+      jupiter.updatePosition(1); //Updating jupiters's position 1 day per frame
     }
 
     if(saturn){
       saturn.rotate(.5);//Rotating saturns half a day per frame
-      saturn.updatePosition(.5); //Updating saturn's position half a day per frame
+      saturn.updatePosition(1); //Updating saturn's position 1 day per frame
     }
 
     if(uranus){
       uranus.rotate(.5);//Rotating uranus' half a day per frame
-      uranus.updatePosition(.5); //Updating uranus' position half a day per frame
+      uranus.updatePosition(1); //Updating uranus' position 1 day per frame
     }
 
     if(neptune){
       neptune.rotate(.5);//Rotating neptune's half a day per frame
-      neptune.updatePosition(.5); //Updating neptune's position half a day per frame
+      neptune.updatePosition(1); //Updating neptune's position 1 day per frame
     }
 
     if(pluto){
       pluto.rotate(.5);//Rotating pluto's half a day per frame
-      pluto.updatePosition(.5); //Updating pluto's position half a day per frame
+      pluto.updatePosition(1); //Updating pluto's position 1 day per frame
     }
 }
 animate();
