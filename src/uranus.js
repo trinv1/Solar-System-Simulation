@@ -10,6 +10,7 @@ import * as THREE from "three";
         this.rotationSpeedPerHour = (2 * Math.PI) / this.rotationPeriod;
         this.rotationDirection = Math.sign(this.rotationPeriod);
         
+        this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
         this.theta = 0; //orbit angle
         this.auScale = 150;//scaling to scene
@@ -59,7 +60,11 @@ updatePosition(timeStep) {
     const x = this.rx * Math.cos(this.theta) * this.auScale;
     const z = this.ry * Math.sin(this.theta) * this.auScale;
 
-    this.uranus.position.set(x, 0, z);
+    //Getting inclination of planet
+    const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
+    const y = Math.sin(inclinationRad) * z;
+        
+    this.uranus.position.set(x, y, z * Math.cos(inclinationRad));
 }
     
 }
