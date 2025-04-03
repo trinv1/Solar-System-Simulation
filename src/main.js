@@ -18,6 +18,12 @@ var renderer = new THREE.WebGLRenderer();//rendering scene
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+//Adding scene background
+const loader = new THREE.TextureLoader();
+const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/e/e4/StarfieldSimulation.gif');
+texture.colorSpace = THREE.SRGBColorSpace;
+scene.background = texture;
+
 let earth;
 let mercury;
 let venus;
