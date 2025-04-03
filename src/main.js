@@ -143,12 +143,12 @@ function animate() {
 
     if(jupiter){
       jupiter.rotate(.5);//Rotating jupiters half a day per frame
-      jupiter.updatePosition(3); //Updating jupiters's position 1 day per frame
+      jupiter.updatePosition(1); //Updating jupiters's position 1 day per frame
     }
 
     if(saturn){
       saturn.rotate(.5);//Rotating saturns half a day per frame
-      saturn.updatePosition(3); //Updating saturn's position 1 day per frame
+      saturn.updatePosition(1); //Updating saturn's position 1 day per frame
     }
 
     if(uranus){
