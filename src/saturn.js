@@ -1,5 +1,6 @@
 //Mercury class
 import * as THREE from "three";
+import saturnRings from './saturnRings.jpg';
 
  export class Saturn {
     constructor(scene, planetData) {
@@ -13,7 +14,7 @@ import * as THREE from "three";
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
         this.theta = 0; //orbit angle
-        this.auScale = 170;//scaling to scene
+        this.auScale = 200;//scaling to scene
 
         //Getting the semi axes of the orbit
         const scaledDistance = Math.log(9.546+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
@@ -27,7 +28,7 @@ import * as THREE from "three";
 
         //Instanciating loader and creating saturn texture
         const loader = new THREE.TextureLoader();
-        const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/0/06/Saturn_map_by_Askaniy.png');
+        const texture = loader.load('https://upload.wikimedia.org/wikipedia/commons/1/1e/Solarsystemscope_texture_8k_saturn.jpg');
         texture.colorSpace = THREE.SRGBColorSpace;
 
         //Creating saturn sphere
@@ -36,11 +37,21 @@ import * as THREE from "three";
         this.saturn = new THREE.Mesh(this.geometrySaturn, this.materialSaturn);
 
         scene.add(this.saturn);
+
+        //Adding planet rings
+        const loaderRing = new THREE.TextureLoader();
+        const textureRing = loaderRing.load(saturnRings);
+        textureRing.colorSpace = THREE.SRGBColorSpace;
+        
+        this.geometryRings = new THREE.RingGeometry(this.radius * 1.3, this.radius * 2, 64);
+        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide, transparent:true, alphaTest:0.5});
+        this.rings = new THREE.Mesh(this.geometryRings, this.materialRings);
     
-        //Spotlight lighting
-        var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
-        spotLight.position.set(300, 50, 100);
-        scene.add(spotLight);
+        this.rings.rotation.x = THREE.MathUtils.degToRad(90 - this.inclinationDeg);//tilting ring
+
+        this.rings.position.copy(this.saturn.position);//copying saturns position in orbit
+
+        scene.add(this.rings);
 
         //Hemisphere lighting
         const hemiLight = new THREE.HemisphereLight(0xffffff, 1)
@@ -65,6 +76,8 @@ updatePosition(timeStep) {
     const y = Math.sin(inclinationRad) * z;
         
     this.saturn.position.set(x, y, z * Math.cos(inclinationRad));
+    this.rings.position.set(x, y, z * Math.cos(inclinationRad));
+
 }
     
 }

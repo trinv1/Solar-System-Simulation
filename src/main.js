@@ -10,6 +10,7 @@ import { Saturn } from "./saturn";
 import { Uranus } from "./uranus";
 import { Neptune } from "./neptune";
 import { Pluto } from "./pluto";
+import background from "./starBackground.jpg";
 
 //Setup Scene
 var scene = new THREE.Scene();
@@ -20,7 +21,7 @@ document.body.appendChild(renderer.domElement);
 
 //Adding scene background
 const loader = new THREE.TextureLoader();
-const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/e/e4/StarfieldSimulation.gif');
+const texture = loader.load(background);
 texture.colorSpace = THREE.SRGBColorSpace;
 scene.background = texture;
 
@@ -101,7 +102,7 @@ async function getPlanetData() {
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //Positioning camera
-camera.position.set(0, 500, 1000);
+camera.position.set(0, 600, 1000);
 
 //Manually update camera
 controls.update();
@@ -142,12 +143,12 @@ function animate() {
 
     if(jupiter){
       jupiter.rotate(.5);//Rotating jupiters half a day per frame
-      jupiter.updatePosition(1); //Updating jupiters's position 1 day per frame
+      jupiter.updatePosition(3); //Updating jupiters's position 1 day per frame
     }
 
     if(saturn){
       saturn.rotate(.5);//Rotating saturns half a day per frame
-      saturn.updatePosition(1); //Updating saturn's position 1 day per frame
+      saturn.updatePosition(3); //Updating saturn's position 1 day per frame
     }
 
     if(uranus){

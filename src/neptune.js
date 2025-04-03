@@ -1,5 +1,6 @@
 //Mercury class
 import * as THREE from "three";
+import neptuneRings from './neptuneRings.png';
 
  export class Neptune {
     constructor(scene, planetData) {
@@ -13,7 +14,7 @@ import * as THREE from "three";
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
         this.theta = 0; //orbit angle
-        this.auScale = 150;//scaling to scene
+        this.auScale = 230;//scaling to scene
 
         //Getting the semi axes of the orbit
         const scaledDistance = Math.log(30.1+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
@@ -36,6 +37,21 @@ import * as THREE from "three";
         this.neptune = new THREE.Mesh(this.geometryNeptune, this.materialNeptune);
 
         scene.add(this.neptune);//adding neptune to scene
+
+        //Adding planet rings
+        const loaderRing = new THREE.TextureLoader();
+        const textureRing = loaderRing.load(neptuneRings);
+        textureRing.colorSpace = THREE.SRGBColorSpace;
+        
+        this.geometryRings = new THREE.RingGeometry(this.radius * 1.3, this.radius * 2, 54);
+        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide});
+        this.rings = new THREE.Mesh(this.geometryRings, this.materialRings);
+    
+        this.rings.rotation.x = THREE.MathUtils.degToRad(90 - this.inclinationDeg);//tilting ring
+
+        this.rings.position.copy(this.neptune.position);//copying neptune's position in orbit
+
+        scene.add(this.rings);
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
@@ -65,6 +81,8 @@ updatePosition(timeStep) {
     const y = Math.sin(inclinationRad) * z;
 
     this.neptune.position.set(x, y, z * Math.cos(inclinationRad));
+    this.rings.position.set(x, y, z * Math.cos(inclinationRad));
+
 }
     
 }

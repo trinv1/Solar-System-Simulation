@@ -1,5 +1,6 @@
 //Mercury class
 import * as THREE from "three";
+import uranusRings from './uranusRings.png';
 
  export class Uranus {
     constructor(scene, planetData) {
@@ -13,7 +14,7 @@ import * as THREE from "three";
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
         this.theta = 0; //orbit angle
-        this.auScale = 150;//scaling to scene
+        this.auScale = 230;//scaling to scene
 
         //Getting the semi axes of the orbit
         const scaledDistance = Math.log(19.11+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
@@ -36,6 +37,21 @@ import * as THREE from "three";
         this.uranus = new THREE.Mesh(this.geometryUranus, this.materialUranus);
 
         scene.add(this.uranus);//adding uranus to scene
+
+        //Adding planet rings
+        const loaderRing = new THREE.TextureLoader();
+        const textureRing = loaderRing.load(uranusRings);
+        textureRing.colorSpace = THREE.SRGBColorSpace;
+        
+        this.geometryRings = new THREE.RingGeometry(this.radius * 1.3, this.radius * 2, 54);
+        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide, transparent:true});
+        this.rings = new THREE.Mesh(this.geometryRings, this.materialRings);
+    
+        this.rings.rotation.x = THREE.MathUtils.degToRad(90 - this.inclinationDeg);//tilting ring
+
+        this.rings.position.copy(this.uranus.position);//copying urnaus' position in orbit
+
+        scene.add(this.rings);
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
@@ -64,7 +80,9 @@ updatePosition(timeStep) {
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
     const y = Math.sin(inclinationRad) * z;
         
-    this.uranus.position.set(x, y, z * Math.cos(inclinationRad));
+    this.uranus.position.set(x, y, z * Math.cos(inclinationRad));//adding planet to scene
+    this.rings.position.set(x, y, z * Math.cos(inclinationRad));//adding rings to scene
+
 }
     
 }

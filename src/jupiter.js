@@ -1,5 +1,6 @@
 //Mercury class
 import * as THREE from "three";
+import ringsImage from './rings.png';
 
  export class Jupiter {
     constructor(scene, planetData) {
@@ -36,6 +37,21 @@ import * as THREE from "three";
         this.jupiter = new THREE.Mesh(this.geometryJupiter, this.materialJupiter);
 
         scene.add(this.jupiter);//adding jupiter to scene
+        
+        //Adding planet rings
+        const loaderRing = new THREE.TextureLoader();
+        const textureRing = loaderRing.load(ringsImage);
+        textureRing.colorSpace = THREE.SRGBColorSpace;
+        
+        this.geometryRings = new THREE.RingGeometry(this.radius * 1, this.radius * 2, 128);
+        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide, transparent:true, alphaTest: 0.2});
+        this.rings = new THREE.Mesh(this.geometryRings, this.materialRings);
+    
+        this.rings.rotation.x = THREE.MathUtils.degToRad(90 - this.inclinationDeg);//tilting ring
+
+        this.rings.position.copy(this.jupiter.position);//copying jupiters position in orbit
+
+        scene.add(this.rings);
     
         //Spotlight lighting
         var spotLight = new THREE.SpotLight(0xFFFFFF, 2);
@@ -64,7 +80,8 @@ updatePosition(timeStep) {
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
     const y = Math.sin(inclinationRad) * z;
                     
-    this.jupiter.position.set(x, y, z * Math.cos(inclinationRad));
+    this.jupiter.position.set(x, y, z * Math.cos(inclinationRad));//adding planet to scene
+    this.rings.position.set(x, y, z * Math.cos(inclinationRad));//adding rings to scene
 }
     
 }
