@@ -44,7 +44,7 @@ import ringsImage from './rings.png';
         textureRing.colorSpace = THREE.SRGBColorSpace;
         
         this.geometryRings = new THREE.RingGeometry(this.radius * 1, this.radius * 2, 128);
-        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide, transparent:true, alphaTest: 0.2});
+        this.materialRings = new THREE.MeshBasicMaterial({ map: textureRing, side: THREE.DoubleSide, transparent:true});
         this.rings = new THREE.Mesh(this.geometryRings, this.materialRings);
     
         this.rings.rotation.x = THREE.MathUtils.degToRad(90 - this.inclinationDeg);//tilting ring
@@ -80,8 +80,8 @@ updatePosition(timeStep) {
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
     const y = Math.sin(inclinationRad) * z;
                     
-    this.jupiter.position.set(x, y, z * Math.cos(inclinationRad));//adding planet to scene
-    this.rings.position.set(x, y, z * Math.cos(inclinationRad));//adding rings to scene
+    this.jupiter.position.set(x, y, z );//adding planet to scene
+    this.rings.position.set(x, y, z);//adding rings to scene
 }
     
 }
