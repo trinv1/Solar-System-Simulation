@@ -15,6 +15,8 @@ import * as THREE from "three";
         this.theta = 0; //orbit angle
         this.auScale = 150;//scaling to scene
 
+        this.distanceFromSun = 0.721//Venus' distance from sun divided by 1AU
+        
         //Getting the semi axes of the orbit
         const scaledDistance = Math.log(0.721+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
         const semiMajorAU = scaledDistance;  
