@@ -37,9 +37,9 @@ let pluto;
 
 //Fetching planet data
 async function getPlanetData() {
-      const response = await fetch('/planetData.json');//Fetching json data
+      const response = await fetch('http://localhost:3000/planets');//Fetching json data
       const data = await response.json();
-      console.log("Loaded JSON:", data);
+      console.log("Loaded JSON from mongodb:", data);
 
       //Finding which object has planet names from json data
       const earthData = data.find(p => p.planet == 'Earth');
