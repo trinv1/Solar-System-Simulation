@@ -3,7 +3,10 @@ import * as THREE from "three";
 
  export class Earth {
     constructor(scene, planetData) {
+        
         this.radius = planetData.mean_radius_km/1500;//Making radius proportionate to scene
+
+        console.log("Earth radius:", this.radius);
 
         //Rotation per day
         this.rotationPeriod = planetData.rotation_period_h;
@@ -16,13 +19,17 @@ import * as THREE from "three";
         this.auScale = 150;//scaling to scene
 
         this.distanceFromSun = 0.997 //Earths distance from sun divided by 1AU
+        const orbitScale = 200;//to scale planets so theyre not inside sun
+        const base = 3;
         
         //Getting the semi axes of the orbit
-        const scaledDistance = Math.log(this.distanceFromSun+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
+        const scaledDistance = Math.log(this.distanceFromSun*orbitScale)/Math.log(base);//scaling distance from sun logarithmically to fit scene
         const semiMajorAU = scaledDistance; 
         const semiMinorAU = semiMajorAU * Math.sqrt(1 - this.eccentricity ** 2);
         this.rx = semiMajorAU;
         this.ry = semiMinorAU;
+
+        console.log("Earth orbit rx:", this.rx, "ry:", this.ry);
 
         //How many radians planet orbits per day
         this.orbitSpeed = (2 * Math.PI) / planetData.orbital_period_d;      

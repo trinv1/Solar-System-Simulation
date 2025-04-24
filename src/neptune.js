@@ -17,9 +17,11 @@ import neptuneRings from './neptuneRings.png';
         this.auScale = 230;//scaling to scene
 
         this.distanceFromSun = 30.1 //Neptunes distance from sun divided by 1AU
+        const orbitScale = 200;//for scaling planet orbit from sun
+        const base = 3;
 
         //Getting the semi axes of the orbit
-        const scaledDistance = Math.log(this.distanceFromSun+1)/Math.log(3);//scaling distance from sun logarithmically to fit scene
+        const scaledDistance = Math.log(this.distanceFromSun+orbitScale)/Math.log(base);//scaling distance from sun logarithmically to fit scene
         const semiMajorAU = scaledDistance; 
         const semiMinorAU = semiMajorAU * Math.sqrt(1 - this.eccentricity ** 2);
         this.rx = semiMajorAU;

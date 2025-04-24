@@ -14,7 +14,7 @@ import background from "./starBackground.jpg";
 
 //Setup Scene
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
 var renderer = new THREE.WebGLRenderer();//rendering scene
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -102,7 +102,7 @@ async function getPlanetData() {
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //Positioning camera
-camera.position.set(0, 600, 1000);
+camera.position.set(0, 600, 4000);
 
 //Manually update camera
 controls.update();
@@ -112,7 +112,7 @@ controls.enableDamping = true;//Weight is applied when you click to move planets
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
-const sun = new Sun(scene, 40, 0xFFFF00, 3); //Sun with radius 40 and yellow light  
+const sun = new Sun(scene, 200, 0xFFFF00, 3); //Sun with radius 40 and yellow light  
 
 //Animation loop
 function animate() {
