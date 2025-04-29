@@ -9,7 +9,7 @@ import saturnRings from './saturnRings.jpg';
         //Rotation per day
         this.rotationPeriod = planetData.rotation_period_h;
         this.rotationSpeedPerHour = (2 * Math.PI) / this.rotationPeriod;
-        this.rotationDirection = Math.sign(this.rotationPeriod);
+        this.rotationDirection = -Math.sign(this.rotationPeriod);
         
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
@@ -62,10 +62,9 @@ import saturnRings from './saturnRings.jpg';
         scene.add(hemiLight);
     }
 
-   //Function to rotate saturn overtime in given direction
-   rotate(timeStep) {
-    const hours = timeStep * 24;
-    this.saturn.rotation.y += this.rotationSpeedPerHour  * hours * this.rotationDirection;
+   //Function to rotate saturn relative to earth in given direction
+   rotate(timeStepInEarthDays) {
+    this.saturn.rotation.y += this.rotationSpeedPerHour  * timeStepInEarthDays;
 }    
 
 //Updating saturns orbit over time
@@ -75,12 +74,14 @@ updatePosition(timeStep) {
     const x = this.rx * Math.cos(this.theta) * this.auScale;
     const z = this.ry * Math.sin(this.theta) * this.auScale;
 
-    //Getting inclination of planet
+    //Setting inclination of planet
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
-    const y = Math.sin(inclinationRad) * z;
-        
-    this.saturn.position.set(x, y, z * Math.cos(inclinationRad));
-    this.rings.position.set(x, y, z * Math.cos(inclinationRad));
+    const xPos = x;
+    const yPos = z * Math.sin(inclinationRad);
+    const zPos = z * Math.cos(inclinationRad);
+
+    this.saturn.position.set(xPos, yPos, zPos);
+    this.rings.position.set(xPos, yPos, zPos);//adding rings to scene
 
 }
     

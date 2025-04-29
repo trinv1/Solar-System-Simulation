@@ -12,6 +12,7 @@ import { Neptune } from "./neptune";
 import { Pluto } from "./pluto";
 import background from "./starBackground.jpg";
 
+
 //Setup Scene
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
@@ -53,50 +54,54 @@ async function getPlanetData() {
       const plutoData = data.find(p => p.planet == 'Pluto');
 
       if (earthData) {
-        console.log("Earth data from JSON:", earthData);
+        console.log("Earth data:", earthData);
         earth = new Earth(scene, earthData);//Creating earth object in scene
       } 
 
       if (mercuryData) {
-        console.log("Mercury data from JSON:", mercuryData);
+        console.log("Mercury data:", mercuryData);
         mercury = new Mercury(scene, mercuryData);//Creating earth object in scene
       } 
 
       if (venusData) {
-        console.log("Venus data from JSON:", venusData);
+        console.log("Venus data:", venusData);
         venus = new Venus(scene, venusData);//Creating venus object in scene
       } 
 
       if (marsData) {
-        console.log("Mars data from JSON:", marsData);
+        console.log("Mars data:", marsData);
         mars = new Mars(scene, marsData);//Creating mars object in scene
       } 
 
       if (jupiterData) {
-        console.log("Jupiter data from JSON:", jupiterData);
+        console.log("Jupiter data:", jupiterData);
         jupiter = new Jupiter(scene, jupiterData);//Creating jupiter object in scene
       } 
 
       if (saturnData) {
-        console.log("Saturn data from JSON:", saturnData);
+        console.log("Saturn data:", saturnData);
         saturn = new Saturn(scene, saturnData);//Creating saturn object in scene
       } 
 
       if (uranusData) {
-        console.log("Uranus data from JSON:", uranusData);
+        console.log("Uranus data:", uranusData);
         uranus = new Uranus(scene, uranusData);//Creating uranus object in scene
       } 
 
       if (neptuneData) {
-        console.log("Neptune data from JSON:", neptuneData);
+        console.log("Neptune data:", neptuneData);
         neptune = new Neptune(scene, neptuneData);//Creating neptune object in scene
       } 
 
       if (plutoData) {
-        console.log("Pluto data from JSON:", plutoData);
+        console.log("Pluto data:", plutoData);
         pluto = new Pluto(scene, plutoData);//Creating pluto object in scene
-      } 
+      }
+      animate();
+ 
     } 
+
+    getPlanetData();
 
 //Creating OrbitControls to allow camera rotation, zoom, and damping
 const controls = new OrbitControls( camera, renderer.domElement );
@@ -116,56 +121,55 @@ const sun = new Sun(scene, 200, 0xFFFF00, 3); //Sun with radius 40 and yellow li
 
 //Animation loop
 function animate() {
+
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     controls.update();
 
     sun.rotate();//Rotating sun
     if (earth) {
-      earth.rotate(0.5);//Rotating earth half a day per frame
+      earth.rotate(1);//Rotating earth 1 earth day per frame
       earth.updatePosition(1); //Updating earths position 1 day per frame
     } 
 
     if(mercury){
-      mercury.rotate(.5);//Rotating mercury half a day per frame
+      mercury.rotate(24/1407.6);//Rotating mercury 1 earth day per frame
       mercury.updatePosition(1); //Updating mercurys position 1 day per frame
     }
 
     if(venus){
-      venus.rotate(.5);//Rotating venus half a day per frame
+      venus.rotate(24/-5832.5);//Rotating venus 1 earth day per frame
       venus.updatePosition(1); //Updating venus's  position 1 day per frame
     }
 
     if(mars){
-      mars.rotate(.5);//Rotating mars half a day per frame
+      mars.rotate(24/24.6);//Rotating mars 1 earth per frame
       mars.updatePosition(1); //Updating mars's  position 1 day per frame
     }
 
     if(jupiter){
-      jupiter.rotate(.5);//Rotating jupiters half a day per frame
+      jupiter.rotate(24/9.9);//Rotating jupiters 1 earth day per frame
       jupiter.updatePosition(1); //Updating jupiters's position 1 day per frame
     }
 
     if(saturn){
-      saturn.rotate(.5);//Rotating saturns half a day per frame
+      saturn.rotate(24/10.7);//Rotating saturns 1 earth day per frame
       saturn.updatePosition(1); //Updating saturn's position 1 day per frame
     }
 
     if(uranus){
-      uranus.rotate(.5);//Rotating uranus' half a day per frame
+      uranus.rotate(24/-17.2);//Rotating uranus' 1 earth day per frame
       uranus.updatePosition(1); //Updating uranus' position 1 day per frame
     }
 
     if(neptune){
-      neptune.rotate(.5);//Rotating neptune's half a day per frame
+      neptune.rotate(24/16.1);//Rotating neptune's 1 earth day per frame
       neptune.updatePosition(1); //Updating neptune's position 1 day per frame
     }
 
     if(pluto){
-      pluto.rotate(.5);//Rotating pluto's half a day per frame
+      pluto.rotate(24/-153.3);//Rotating pluto's 1 earth day per frame
       pluto.updatePosition(1); //Updating pluto's position 1 day per frame
     }
 }
-animate();
-getPlanetData();
 

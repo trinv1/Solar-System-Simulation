@@ -7,8 +7,8 @@ import * as THREE from "three";
         
         //Rotation per day
         this.rotationPeriod = planetData.rotation_period_h;
-        this.rotationSpeedPerHour = (2 * Math.PI) / this.rotationPeriod;
-        this.rotationDirection = Math.sign(this.rotationPeriod);
+        this.rotationSpeedPerHour = (2 * Math.PI) / this.rotationPeriod;       
+        this.rotationDirection = -Math.sign(this.rotationPeriod);
         
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
@@ -31,7 +31,7 @@ import * as THREE from "three";
 
         //Instanciating loader and creating mercury texture
         const loader = new THREE.TextureLoader();
-        const texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Mercury_global_map_2013-05-14_bright.png');
+        const texture = loader.load('https://upload.wikimedia.org/wikipedia/commons/f/f2/Mercury_global_map_2013-05-14_bright.png');
         texture.colorSpace = THREE.SRGBColorSpace;
 
         //Creating Mercury sphere
@@ -51,10 +51,9 @@ import * as THREE from "three";
         scene.add(hemiLight);
     }
 
-   //Function to rotate mercury overtime in given direction
-   rotate(timeStep) {
-    const hours = timeStep * 24;
-    this.mercury.rotation.y += this.rotationSpeedPerHour  * hours * this.rotationDirection;
+   //Function to rotate mercury relative to earth days in given direction
+   rotate(timeStepInEarthDays) {
+    this.mercury.rotation.y += this.rotationSpeedPerHour  * timeStepInEarthDays * this.rotationDirection;
 }    
 
 //Updating mercurys orbit over time
@@ -64,11 +63,14 @@ updatePosition(timeStep) {
     const x = this.rx * Math.cos(this.theta) * this.auScale;
     const z = this.ry * Math.sin(this.theta) * this.auScale;
 
-    //Getting inclination of planet
+    //Setting inclination of planet
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
-    const y = Math.sin(inclinationRad) * z;
     
-    this.mercury.position.set(x, y, z * Math.cos(inclinationRad));
+    const xPos = x;
+    const yPos = z * Math.sin(inclinationRad);
+    const zPos = z * Math.cos(inclinationRad);
+
+    this.mercury.position.set(xPos, yPos, zPos);
 }
     
 }

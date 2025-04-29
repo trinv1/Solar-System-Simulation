@@ -8,7 +8,7 @@ import * as THREE from "three";
         //Rotation per day
         this.rotationPeriod = planetData.rotation_period_h;
         this.rotationSpeedPerHour = (2 * Math.PI) / this.rotationPeriod;
-        this.rotationDirection = Math.sign(this.rotationPeriod);
+        this.rotationDirection = -Math.sign(this.rotationPeriod);
         
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
@@ -51,10 +51,9 @@ import * as THREE from "three";
         scene.add(hemiLight);
     }
 
-   //Function to rotate venus overtime in given direction
+   //Function to rotate venus relative to earth days in given direction
    rotate(timeStep) {
-    const hours = timeStep * 24;
-    this.venus.rotation.y += this.rotationSpeedPerHour  * hours * this.rotationDirection;
+    this.venus.rotation.y += this.rotationSpeedPerHour  * timeStep;
 }    
 
 //Updating venus orbit over time
@@ -64,11 +63,13 @@ updatePosition(timeStep) {
     const x = this.rx * Math.cos(this.theta) * this.auScale;
     const z = this.ry * Math.sin(this.theta) * this.auScale;
 
-    //Getting inclination of planet
+    //Setting inclination of planet
     const inclinationRad = THREE.MathUtils.degToRad(this.inclinationDeg);
-    const y = Math.sin(inclinationRad) * z;
-        
-    this.venus.position.set(x, y, z * Math.cos(inclinationRad));
+    const xPos = x;
+    const yPos = z * Math.sin(inclinationRad);
+    const zPos = z * Math.cos(inclinationRad);
+
+    this.venus.position.set(xPos, yPos, zPos);
 }
     
 }
