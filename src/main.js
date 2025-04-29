@@ -97,11 +97,9 @@ async function getPlanetData() {
         console.log("Pluto data:", plutoData);
         pluto = new Pluto(scene, plutoData);//Creating pluto object in scene
       }
-      animate();
  
     } 
 
-    getPlanetData();
 
 //Creating OrbitControls to allow camera rotation, zoom, and damping
 const controls = new OrbitControls( camera, renderer.domElement );
@@ -113,7 +111,6 @@ camera.position.set(0, 600, 4000);
 controls.update();
 
 controls.enableDamping = true;//Weight is applied when you click to move planets
-//controls.autoRotate = true;//Camera rotates around solar system
 controls.autoZoom = true;//Zoom in using scroller on mouse
 
 //Creating Sun
@@ -172,4 +169,6 @@ function animate() {
       pluto.updatePosition(1); //Updating pluto's position 1 day per frame
     }
 }
+getPlanetData();
+animate();
 

@@ -1,4 +1,4 @@
-//Mercury class
+//Saturn class
 import * as THREE from "three";
 import saturnRings from './saturnRings.jpg';
 
@@ -14,14 +14,13 @@ import saturnRings from './saturnRings.jpg';
         this.inclinationDeg = planetData.orbital_inclination;
         this.eccentricity = planetData.orbital_eccentricity;//how stretched the orbit is
         this.theta = 0; //orbit angle
-        this.auScale = 200;//scaling to scene
+        this.auScale = 150;//scaling to scene
 
         this.distanceFromSun = 9.546//Saturn distance from sun divided by 1 AU
-        const orbitScale = 200;//for scaling planet orbit from sun
-        const base = 3;
+        const orbitScale = 5;//for scaling planet orbit from sun
 
         //Getting the semi axes of the orbit
-        const scaledDistance = Math.log(this.distanceFromSun*orbitScale)/Math.log(base);//scaling distance from sun logarithmically to fit scene
+        const scaledDistance = Math.log(this.distanceFromSun+1)*orbitScale;//scaling distance from sun logarithmically to fit scene
         const semiMajorAU = scaledDistance; 
         const semiMinorAU = semiMajorAU * Math.sqrt(1 - this.eccentricity ** 2);
         this.rx = semiMajorAU;
